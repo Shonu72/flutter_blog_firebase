@@ -4,6 +4,7 @@ import 'package:flutter_blog/routes/routes.dart';
 import 'package:flutter_blog/services/crud.dart';
 import 'package:flutter_blog/widgets/app_text.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   // final User? user;
@@ -16,6 +17,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   CrudMethods crudMethods = CrudMethods();
   Stream? blogStream;
+    bool _isLoggedIn = false;
+
   @override
   void initState() {
     super.initState();
@@ -57,15 +60,22 @@ class _HomeScreenState extends State<HomeScreen> {
             child: CircularProgressIndicator(),
           );
   }
+  Future<void> getLoggedInStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isLoggedIn = prefs.getBool('loggedIn') ?? false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     Future<dynamic> logout() async {
       await FirebaseAuth.instance.signOut();
-      // ignore: use_build_context_synchronously
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.remove('loggedIn');
+      getLoggedInStatus(); // Call getLoggedInStatus here
       Get.offAllNamed(Routes.login);
     }
-
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       appBar: AppBar(

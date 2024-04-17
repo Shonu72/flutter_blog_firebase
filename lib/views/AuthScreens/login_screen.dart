@@ -8,6 +8,7 @@ import 'package:flutter_blog/widgets/app_text.dart';
 import 'package:flutter_blog/widgets/image_container.dart';
 import 'package:flutter_blog/widgets/text_field_widget.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -17,18 +18,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool _isSigningIn = false;
+    bool _isLoggedIn = false;
 
   @override
   void initState() {
     super.initState();
-    _initializeFirebase();
-  }
-
-  void _initializeFirebase() async {
-    await Firebase.initializeApp();
   }
 
   @override
@@ -388,7 +386,32 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _signIn() async {
+  // void _signIn() async {
+  //   setState(() {
+  //     _isSigningIn = true;
+  //   });
+  //   User? user = await FirebaseAuthHelper.signInUsingEmailPassword(
+  //     email: emailController.text,
+  //     password: passwordController.text,
+  //   );
+  //   setState(() {
+  //     _isSigningIn = false;
+  //   });
+  //   if (user != null) {
+  //     SharedPreferences prefs = await SharedPreferences.getInstance();
+  //     prefs.setBool('loggedIn', true);
+  //     Get.offNamed(Routes.homePage);
+  //   }
+  // }
+
+  Future<void> getLoggedInStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isLoggedIn = prefs.getBool('loggedIn') ?? false;
+    });
+  }
+
+void _signIn() async {
     setState(() {
       _isSigningIn = true;
     });
@@ -403,9 +426,10 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     if (user != null) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('loggedIn', true);
+      getLoggedInStatus(); // Call getLoggedInStatus here
       Get.offNamed(Routes.homePage);
-    } else {
-      print("User not found");
     }
   }
 }
