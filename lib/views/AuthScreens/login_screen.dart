@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/routes/routes.dart';
 import 'package:flutter_blog/services/auth_services.dart';
@@ -18,11 +17,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool _isSigningIn = false;
-    bool _isLoggedIn = false;
 
   @override
   void initState() {
@@ -386,32 +383,11 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // void _signIn() async {
-  //   setState(() {
-  //     _isSigningIn = true;
-  //   });
-  //   User? user = await FirebaseAuthHelper.signInUsingEmailPassword(
-  //     email: emailController.text,
-  //     password: passwordController.text,
-  //   );
-  //   setState(() {
-  //     _isSigningIn = false;
-  //   });
-  //   if (user != null) {
-  //     SharedPreferences prefs = await SharedPreferences.getInstance();
-  //     prefs.setBool('loggedIn', true);
-  //     Get.offNamed(Routes.homePage);
-  //   }
-  // }
-
   Future<void> getLoggedInStatus() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _isLoggedIn = prefs.getBool('loggedIn') ?? false;
-    });
+    setState(() {});
   }
 
-void _signIn() async {
+  void _signIn() async {
     setState(() {
       _isSigningIn = true;
     });
@@ -428,7 +404,7 @@ void _signIn() async {
     if (user != null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setBool('loggedIn', true);
-      getLoggedInStatus(); // Call getLoggedInStatus here
+      getLoggedInStatus(); 
       Get.offNamed(Routes.homePage);
     }
   }

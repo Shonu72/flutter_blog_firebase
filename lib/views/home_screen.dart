@@ -125,7 +125,6 @@ class _HomeScreenState extends State<HomeScreen> {
               : const Center(
                   child: CircularProgressIndicator(),
                 )),
-      // if user loggedin then show floating action button
 
       floatingActionButton: Container(
         padding: const EdgeInsets.symmetric(vertical: 20),
