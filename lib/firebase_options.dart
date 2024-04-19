@@ -50,6 +50,7 @@ class DefaultFirebaseOptions {
     projectId: 'flutterblog-c24df',
     authDomain: 'flutterblog-c24df.firebaseapp.com',
     storageBucket: 'flutterblog-c24df.appspot.com',
+    measurementId: 'G-48BZ1DERQD',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -66,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '708390293197',
     projectId: 'flutterblog-c24df',
     storageBucket: 'flutterblog-c24df.appspot.com',
+    iosClientId: '708390293197-8aguqr63vlis3m5osqod2hnaglv865b1.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterBlog',
   );
 
@@ -75,6 +77,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '708390293197',
     projectId: 'flutterblog-c24df',
     storageBucket: 'flutterblog-c24df.appspot.com',
+    iosClientId: '708390293197-vb8i4gv471mnfq66p4iqrmp6cnsooogq.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterBlog.RunnerTests',
   );
 }

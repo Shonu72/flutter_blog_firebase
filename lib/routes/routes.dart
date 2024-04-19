@@ -2,6 +2,7 @@ import 'package:flutter_blog/views/AuthScreens/login_screen.dart';
 import 'package:flutter_blog/views/AuthScreens/signup_screen.dart';
 import 'package:flutter_blog/views/add_blog_screen.dart';
 import 'package:flutter_blog/views/home_screen.dart';
+import 'package:flutter_blog/views/notification_screen.dart';
 import 'package:get/get.dart';
 
 class Routes {
@@ -9,6 +10,7 @@ class Routes {
   static String signup = '/signupPage';
   static String homePage = '/homePage';
   static String addblogPage = '/addblogPage';
+  static String notificationPage = '/notificationPage';
 }
 
 final getPages = [
@@ -16,4 +18,5 @@ final getPages = [
   GetPage(name: Routes.signup, page: () => const SignUpScreen()),
   GetPage(name: Routes.homePage, page: () => const HomeScreen()),
   GetPage(name: Routes.addblogPage, page: () => const AddBlogScreen()),
+  GetPage(name: Routes.notificationPage, page: () => const NotificationScreen()),
 ];

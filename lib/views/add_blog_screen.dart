@@ -351,17 +351,14 @@ class _AddBlogScreenState extends State<AddBlogScreen> {
                                   hintStyle:
                                       const TextStyle(color: Colors.white),
                                   prefixIcon: const Icon(
-                                    Icons.category_outlined,
-                                    color: Colors.white,
-                                  ),
+                                      Icons.category_outlined,
+                                      color: Colors.white),
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
+                                      borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(25.0),
-                                    borderSide: const BorderSide(
-                                        color: Colors.white, width: 2),
-                                  ),
+                                      borderRadius: BorderRadius.circular(25.0),
+                                      borderSide: const BorderSide(
+                                          color: Colors.white, width: 2)),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
                                     borderSide: const BorderSide(
@@ -536,7 +533,6 @@ class _AddBlogScreenState extends State<AddBlogScreen> {
     }
 
     print("imageurl from firebase  : $imageUrl");
-    // Navigator.pop(context);
 
     Map<String, dynamic> blogData = {
       "imgUrl": imageUrl,

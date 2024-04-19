@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   CrudMethods crudMethods = CrudMethods();
   Stream? blogStream;
-    bool _isLoggedIn = false;
+  bool _isLoggedIn = false;
 
   @override
   void initState() {
@@ -29,8 +29,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget blogsList() {
-    return blogStream != null
-        ? SingleChildScrollView(
+    return blogStream == null
+        ? const Center(
+            child: CircularProgressIndicator(),
+          )
+        : SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 StreamBuilder(
@@ -55,11 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     })
               ],
             ),
-          )
-        : const Center(
-            child: CircularProgressIndicator(),
           );
   }
+
   Future<void> getLoggedInStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -76,6 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
       getLoggedInStatus(); // Call getLoggedInStatus here
       Get.offAllNamed(Routes.login);
     }
+
     return Scaffold(
       backgroundColor: Colors.blueGrey,
       appBar: AppBar(
@@ -107,16 +109,29 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              logout();
-            },
-            icon: const Icon(
-              Icons.logout,
-              color: Colors.white,
-              size: 30,
-            ),
-          ),
+          Row(
+            children: [
+              IconButton(
+                  onPressed: () {
+                    Get.toNamed(Routes.notificationPage);
+                  },
+                  icon: const Icon(
+                    Icons.notifications,
+                    color: Colors.white,
+                    size: 30,
+                  )),
+              IconButton(
+                onPressed: () {
+                  logout();
+                },
+                icon: const Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                  size: 30,
+                ),
+              ),
+            ],
+          )
         ],
       ),
       body: SingleChildScrollView(
@@ -125,7 +140,6 @@ class _HomeScreenState extends State<HomeScreen> {
               : const Center(
                   child: CircularProgressIndicator(),
                 )),
-
       floatingActionButton: Container(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Row(

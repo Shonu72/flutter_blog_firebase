@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/firebase_options.dart';
 import 'package:flutter_blog/routes/routes.dart';
+import 'package:flutter_blog/services/notification_firebase.dart';
 import 'package:flutter_blog/views/AuthScreens/login_screen.dart';
 import 'package:flutter_blog/views/home_screen.dart';
 import 'package:get/get.dart';
@@ -10,8 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-
+  await FirebaseAPI().initNotification();
   runApp(const MyApp());
 }
 

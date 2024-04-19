@@ -12,7 +12,12 @@
           "package_name": "com.example.flutter_blog"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "708390293197-dak4c50sf21k72n25nl9si1puvr2iu5i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDEwM2z8mOxnkR_5I4iwwOg9uyPEuiKBoo"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708390293197-dak4c50sf21k72n25nl9si1puvr2iu5i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "708390293197-8aguqr63vlis3m5osqod2hnaglv865b1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterBlog"
+              }
+            }
+          ]
         }
       }
     }
